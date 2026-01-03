@@ -18,7 +18,7 @@ EXPORT_FOLDER = ''
 
 # Shouldn't need to change anything here unless you're running Elasticsearch on a port other than the default.
 # Note that this script much be run locally on the machine that is hosting TubeArchivist and Elasticsearch.
-client = Elasticsearch('http://localhost:9200', basic_auth=(ELASTIC_USERNAME, ELASTIC_PASSWORD))
+client = Elasticsearch('http://localhost:9200', http_auth=(ELASTIC_USERNAME, ELASTIC_PASSWORD))
 
 # Creates the base export folder set by user.
 os.makedirs(EXPORT_FOLDER, exist_ok=True)
@@ -68,3 +68,4 @@ for a in videos_list:
         print(f"{a['_source']['youtube_id']} exported and recorded in archive.")
     else:
         print(f"{a['_source']['youtube_id']} already exported, skipping...")
+
